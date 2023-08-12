@@ -60,10 +60,13 @@ Task 5: Submission
 - Push your code to the repository, excluding the build artifacts.
 
 
-### Running the application
- mvn spring-boot:run
+# Running the application
 
- # Creating new transaction
+ ```
+ mvn spring-boot:run
+ ```
+
+ ## Creating new transaction
 
  ```
  curl --location 'http://localhost:8080/transaction-microservice/api/v1/transactions' \
@@ -100,7 +103,7 @@ Task 5: Submission
 }
  ```
 
- # Fetching byID
+ ## Fetching byID
 
  ``` 
 curl --location 'http://localhost:8080/transaction-microservice/api/v1/transactions/1'
@@ -127,7 +130,7 @@ curl --location 'http://localhost:8080/transaction-microservice/api/v1/transacti
 }
  ```
 
- # Fetch all
+ ## Fetch all
 
  ```
  curl --location 'http://localhost:8080/transaction-microservice/api/v1/transactions?page=6&size=4'
