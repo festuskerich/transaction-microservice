@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 @Data
 @RequiredArgsConstructor
 public class TransactionDto {
-    String requestID;
     @NotNull(message = "Amount may not be blank")
     @Max(150000)
     @Min(5) 

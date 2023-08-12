@@ -8,8 +8,12 @@ import com.festuskerich.transactionmicroservce.dto.TransactionUpdateDto;
 
 public interface TransactionService {
     TransactionDto createTransaction(TransactionDto transactionDto);
+
     void deleteTransaction(Long id);
+
     TransactionDto getTransactionById(Long id);
-      PaginatedResponse<TransactionDto> getAllTransactions(Pageable pageable);
-      TransactionDto updateTransaction(Long id, TransactionUpdateDto request);
+
+    PaginatedResponse<TransactionDto> getAllTransactions(Pageable pageable);
+
+    TransactionDto updateTransaction(Long id, TransactionUpdateDto request);
 }

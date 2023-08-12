@@ -34,10 +34,9 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping("/")
-    
+    @PostMapping
     public ResponseEntity<ApiResponse<TransactionDto>> createTransaction(@Valid @RequestBody TransactionDto request) {
-        log.info("*****{}**** New transactions received for processing {}", request.getRequestID(), request);
+        log.info(" New transactions received for processing {}", request);
         ApiResponse<TransactionDto> response = new ApiResponse<>(200, "Transaction saved successfully",
                 transactionService.createTransaction(request));
         return ResponseEntity.ok(response);
@@ -46,7 +45,7 @@ public class TransactionController {
     @PutMapping("/{id}")
     public ResponseEntity<ApiResponse<TransactionDto>> updateTransaction(@PathVariable Long id,
             @RequestBody TransactionUpdateDto request) {
-        log.info("*****{}**** Request to update transaction {}", request.getRequestID(), request);
+        log.info(" Request to update transaction {}", request);
         ApiResponse<TransactionDto> response = new ApiResponse<>(200, "Transaction updated successfully",
                 transactionService.updateTransaction(id,request));
         return ResponseEntity.ok(response);
@@ -67,7 +66,7 @@ public class TransactionController {
 
     @GetMapping("/{id}")
     public ResponseEntity<ApiResponse<TransactionDto>> getTransactionById(@PathVariable Long id) {
-        log.info("*****{}**** New transaction query request received for processing {}", id);
+        log.info("*****{}**** New transaction query request received for processing", id);
         ApiResponse<TransactionDto> response = new ApiResponse<>(200, "Transaction",
                 transactionService.getTransactionById(id));
         return ResponseEntity.ok(response);
@@ -75,7 +74,7 @@ public class TransactionController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long id) {
-        log.info("*****{}**** deleting transaction with ID {} ", id);
+        log.info("Deleting transaction with ID {} ", id);
         transactionService.deleteTransaction(id);
         ApiResponse<Void> response = new ApiResponse<>(204, "Transaction deleted successfully", null);
         return new ResponseEntity<>(response, HttpStatus.NO_CONTENT);

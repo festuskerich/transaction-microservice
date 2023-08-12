@@ -8,7 +8,6 @@ import lombok.Data;
 
 @Data
 public class TransactionUpdateDto {
-    String requestID;
     Integer amount;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "MM-dd-yyyy")
     Date transactionDate;

@@ -59,3 +59,123 @@ Task 5: Submission
 - Create a public GitHub repository for your project.
 - Push your code to the repository, excluding the build artifacts.
 
+
+### Running the application
+ mvn spring-boot:run
+
+ # Creating new transaction
+
+ ```
+ curl --location 'http://localhost:8080/transaction-microservice/api/v1/transactions' \
+--header 'Content-Type: application/json' \
+--data '{
+"transactionDate":"12-12-2021",
+"senderName":"Festus Kerich",
+"receiverName":"Mika Mutai",
+"amount": 100
+}'
+ ```
+
+ ```json
+{
+    "status": 200,
+    "message": "Transaction saved successfully",
+    "data": {
+        "amount": 100,
+        "transactionDate": "12-12-2021",
+        "senderName": "Festus Kerich",
+        "receiverName": "Mika Mutai"
+    }
+}
+ ```
+
+ ```json
+{
+    "status": 400,
+    "message": "Could you check your request and try again?",
+    "data": [
+        "amount: must be greater than or equal to 5",
+        "senderName: Sender name may not be blank"
+    ]
+}
+ ```
+
+ # Fetching byID
+
+ ``` 
+curl --location 'http://localhost:8080/transaction-microservice/api/v1/transactions/1'
+ ```
+
+ ``` json
+{
+    "status": 200,
+    "message": "Transaction",
+    "data": {
+        "amount": 100,
+        "transactionDate": "12-12-2021",
+        "senderName": "Festus Kerich",
+        "receiverName": "Mika Mutai"
+    }
+}
+ ```
+
+ ```json
+{
+    "status": 404,
+    "message": "Entity with id 1 not found",
+    "data": null
+}
+ ```
+
+ # Fetch all
+
+ ```
+ curl --location 'http://localhost:8080/transaction-microservice/api/v1/transactions?page=6&size=4'
+ ```
+
+ ```json
+ {
+    "status": 200,
+    "message": "Transaction saved successfully",
+    "data": {
+        "items": [
+            {
+                "amount": 100,
+                "transactionDate": "12-12-2021",
+                "senderName": "Sender-545",
+                "receiverName": "Receiver-915"
+            },
+            {
+                "amount": 100,
+                "transactionDate": "12-12-2021",
+                "senderName": "Sender-630",
+                "receiverName": "Receiver-423"
+            },
+            {
+                "amount": 100,
+                "transactionDate": "12-12-2021",
+                "senderName": "Sender-546",
+                "receiverName": "Receiver-0"
+            },
+            {
+                "amount": 100,
+                "transactionDate": "12-12-2021",
+                "senderName": "Sender-210",
+                "receiverName": "Receiver-632"
+            }
+        ],
+        "totalPages": 10,
+        "totalItems": 38,
+        "last": false,
+        "first": false,
+        "numberOfElements": 4,
+        "size": 4,
+        "number": 6,
+        "sort": {
+            "sorted": false,
+            "unsorted": true,
+            "empty": true
+        }
+    }
+}
+ ```
